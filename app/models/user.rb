@@ -9,7 +9,4 @@ class User < ActiveRecord::Base
 				uniqueness: {case_sensitive: false},
 				length: {minimum: 8, maximum: 30},
 				format: { with: VALID_EMAIL_REGEX }
-	validates :password, presence: true, length: {minimum: 8, maximum: 16}
-
-
 end
