@@ -55,7 +55,7 @@ gem 'money-rails'
 
 ## MODELS
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 # randomly generate avatar
 gem "avatarly"
