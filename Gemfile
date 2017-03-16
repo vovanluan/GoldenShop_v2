@@ -201,3 +201,5 @@ gem 'faker'
 gem 'blazer'
 # DB GUID
 gem 'rails_db'
+# Authetication gem
+gem 'devise'
