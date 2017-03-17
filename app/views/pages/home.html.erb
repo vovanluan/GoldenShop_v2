@@ -1,0 +1,27 @@
+<aside class="col-xs-3">
+	<h4 class="category-title">Category list</h4>
+	<% @categories.each do |c| %>
+		<div>
+			<a href="">
+				<h5><%=c.name %></h5>
+			</a>
+		</div>
+	<% end %>						
+</aside>
+<section class="col-xs-9">
+	<h1 align="center">Listing books</h1>
+	<div class="container">
+	<% @books.each_slice(3) do |books| %>
+		<div class="row">
+			<% books.each do |book| %>
+				<div class="col-xs-4">
+					<h3><%= book.title %></h3>
+					<%= image_tag("book-store")%>
+					<p><%= book.description %></p>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+	</div>
+	<%= will_paginate @books %>
+</section>

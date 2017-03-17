@@ -2,16 +2,21 @@
 
 @import "bootstrap";
 
-$bgDefault      : #e74c3c;
-$bgHighlight    : #c0392b;
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+$bgDefault      : #9b59b6;
+$bgHighlight    : #8e44ad;
 $colDefault     : #ecf0f1;
-$colHighlight       : #ffbbbc;
+$colHighlight   : #ecdbff;
+$dropDown       : false;
 .navbar-default {
   background-color: $bgDefault;
   border-color: $bgHighlight;
   .navbar-brand {
     color: $colDefault;
-    &:hover, &:focus { 
+    &:hover, &:focus {
       color: $colHighlight; }}
   .navbar-text {
     color: $colDefault; }
@@ -20,7 +25,23 @@ $colHighlight       : #ffbbbc;
       > a {
         color: $colDefault;
         &:hover,  &:focus {
-          color: $colHighlight; }}}
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li {
+            > a {
+              color: $colDefault;
+              &:hover,  &:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight; }}
+            > .divider {
+              background-color: $bgHighlight;}}}}}
+    @if $dropDown {
+      .open .dropdown-menu > .active {
+        > a, > a:hover, > a:focus {
+          color: $colHighlight;
+          background-color: $bgHighlight; }}}
     > .active {
       > a, > a:hover, > a:focus {
         color: $colHighlight;
@@ -49,7 +70,7 @@ $colHighlight       : #ffbbbc;
       &:hover, &:focus {
         color: $colHighlight; }}
     > .active {
-      > a, > a:hover, > a:focus, {
+      > a, > a:hover, > a:focus {
         color: $colHighlight;
         background-color: $bgHighlight; }}}
 }
@@ -65,4 +86,30 @@ img.logo-image{
 	max-height: 50px;
 	width: auto;
 	background-color: #e74c3c;
+}
+
+footer {
+	background-color: #ddd;
+}
+
+.category-title {
+	font-size: 1.8em;
+	color: #fff;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+aside {
+	text-align: center;
+	background-color: #9b59b6;
+}
+aside h4 {
+	margin-top: 0px;
+}
+
+aside h5 {
+	color: #ecf0f1;
+	font-size: 1.5em;
 }

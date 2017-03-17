@@ -201,5 +201,7 @@ gem 'faker'
 gem 'blazer'
 # DB GUID
 gem 'rails_db'
-# Authetication gem
-gem 'devise'
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
+# Bootstrap for pagination
+gem 'bootstrap-will_paginate'
