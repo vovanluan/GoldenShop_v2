@@ -3,6 +3,7 @@ class Book < ActiveRecord::Base
   has_many :book_categories
   has_many :categories, through: :book_categories
 	validates :title, presence: true, length: { minimum: 3, maximum: 50}
-	validates :description, presence: true, length: { minimum: 10, maximum: 120}
+	validates :description, presence: true, length: { minimum: 10, maximum: 400}
 	validates :price, presence: true
+	validates :in_stock, presence: true
 end

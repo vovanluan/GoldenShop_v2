@@ -36,6 +36,14 @@
 			</div>			
 		</div>
 		<div class="form-group">
+			<div class="control-label col-sm-2 control-label">
+				<%= f.label :in_stock %>
+			</div>
+			<div class="col-sm-8">
+				<%= f.text_field :in_stock, class: "form-control", placeholder: "Number of books in stock" %>			
+			</div>			
+		</div>		
+		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|%>
 				  <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>

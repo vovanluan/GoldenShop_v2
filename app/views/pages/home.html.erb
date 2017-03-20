@@ -14,11 +14,20 @@
 	<% @books.each_slice(3) do |books| %>
 		<div class="row">
 			<% books.each do |book| %>
-				<div class="col-xs-4">
-					<h3><%= book.title %></h3>
-					<%= image_tag("book-store")%>
-					<p><%= book.description %></p>
-				</div>
+				<div class="card col-xs-4">
+				  <%= image_tag("book-store", class: "card-img-top")%>
+				  <div class="card-block">
+				    <h4 class="card-title"><%= book.title %></h4>
+				    <h6 class="card-subtitle mb-2 text-muted">
+				    	Categories: 
+				    	<% book.categories.each do |x|%>
+				    		<%= x.name + " " %> 
+				    	<% end %>
+				    </h6>
+				    <p class="card-text"><%= book.description %></p>
+				    <a href="#" class="btn btn-primary">Add to cart</a>
+				  </div>
+				</div>			
 			<% end %>
 		</div>
 	<% end %>
