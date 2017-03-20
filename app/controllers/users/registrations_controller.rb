@@ -19,7 +19,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super
+    if current_user.update(user_params)
+      sign_in(current_user, :bypass => true)
+      flash[:notice] = "User was successfully updated"
+      redirect_to edit_user_registration_path
+    else
+      render 'edit'
+    end   
   end
 
   # DELETE /resource
@@ -27,6 +33,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  private 
+  def user_params
+    params.require(:user).permit(:password, :password_confirmation, :avatar)
+  end
+  def set_user
+    @user = user.find(params[:id])      
+  end
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
