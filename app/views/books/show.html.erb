@@ -1,8 +1,53 @@
-<h1>Showing selected book</h1>
-<p>Title: <%= @book.title%></p>
-<p>
-	Description: <%= @book.description %>
-</p>
+<div class="containter" style="margin-left: 20%; margin-right: 20%; margin-top: 15px;">
+	<div class="row">
+		<!-- Book Image -->
+		<div class="col-xs-5">
+			<%= image_tag("book-store", class: "image")%>
+		</div>
 
-<%= link_to "Edit this book", edit_book_path(@book) %>
-<%= link_to "Back to books listing", books_path %>
+		<!-- Book Description-->
+		<div class="col-xs-7">
+			<h4 class="card-title title"><%= @book.title %></h4>
+			<h6 class="card-subtitle mb-2 text-muted categories">
+				Categories: 
+				<% @book.categories.each do |x|%>
+					<%= x.name + " " %> 
+				<% end %>
+			</h6>
+			<h6 class="introduction">Introduction:</h6>
+			<p class="card-text description"><%= @book.description %></p>
+			<p style="font-size: 18px;" class="card-text price"><strong>Price: $<%= @book.price  %></strong></p>
+			<p class="card-text">
+				<strong style="font-size: 18px;">Quantity:</strong> 		
+			</p>
+			<div class="row">
+				<p class="card-text col-xs-3"><input type="number" class="form-control text-center" value="1"></p>
+				<button class="btn btn-danger col-xs-5" style="font-size: 18px;">Add to cart</button>
+			</div>
+		</div>
+		<!-- BEGIN list similar book -->
+		<div class="col-xs-12" style="margin-top: 30px;">
+			<h3 style="border-bottom: solid 1px gray; padding-bottom: 10px;"><strong>Similar books</strong></h3>
+			<div class="row" style="padding-top: 10px;">
+				<% @similarbooks.first(4).each do |similarbook|%>
+					<div class="card col-xs-3 book">
+						<%= link_to book_path(similarbook.id) do %>
+						  <%= image_tag("book-store", class: "card-img-top")%>
+							  <div class="card-block">
+							    <h4 class="card-title"><%= similarbook.title %></h4>
+							    <h6 class="card-subtitle mb-2 text-muted">
+							    	Categories: 
+							    	<% similarbook.categories.each do |x|%>
+							    		<%= x.name + " " %> 
+							    	<% end %>
+							    </h6>
+									<p style="font-size: 16px;" class="card-text price"><strong>Price: $<%= similarbook.price  %></strong></p>							    
+							  </div>
+					  <% end %>
+					</div>							
+				<% end %>
+			</div>
+		</div>		
+		<!-- END list similar book -->
+	</div>	
+</div>

@@ -19,6 +19,7 @@ class BooksController < ApplicationController
 
 	end
 	def show
+		@similarbooks = Book.all.select {|x| x.id != @book.id && !(x.categories & @book.categories).empty?}
 	end
 
 

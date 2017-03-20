@@ -135,8 +135,47 @@ aside h5 {
     padding-top: 20px;
     padding-bottom: 100px;
     max-width: 100%;
-    max-height: 100%
+    max-height: 100%;
 }
 .image_caption{
     top: 72%;
+}
+#mainCarousel {
+	border-bottom: thick 1px gray;
+}	
+.slide-show {
+	padding: 0px;
+	border: solid 2px gray;
+}
+.title {
+	font-size: 25px;
+	color: orange;
+}
+.categories {
+	font-size: 20px;
+	color: blue;
+}
+.description {
+	font-size: 18px;
+}
+.introduction {
+	font-size: 20px;
+	border-top: solid 2px gray;
+	padding-top: 10px;
+}
+
+.price {
+	border-top: solid 2px gray;
+	padding-top: 10px;
+	color: green;
+}
+
+.image {
+	max-width: 100%;
+	height: auto;
+  min-height: 120px;
+  max-height: auto;
+  float: left;
+  margin: 3px;
+  padding: 3px;	
 }
