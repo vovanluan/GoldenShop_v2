@@ -9,28 +9,77 @@
 	<% end %>						
 </aside>
 <section class="col-xs-9">
-	<h1 align="center">Listing books</h1>
-	<div class="container">
-	<% @books.each_slice(3) do |books| %>
-		<div class="row">
-			<% books.each do |book| %>
-				<div class="card col-xs-4">
-				  <%= image_tag("book-store", class: "card-img-top")%>
-				  <div class="card-block">
-				    <h4 class="card-title"><%= book.title %></h4>
-				    <h6 class="card-subtitle mb-2 text-muted">
-				    	Categories: 
-				    	<% book.categories.each do |x|%>
-				    		<%= x.name + " " %> 
-				    	<% end %>
-				    </h6>
-				    <p class="card-text"><%= book.description %></p>
-				    <a href="#" class="btn btn-primary">Add to cart</a>
-				  </div>
-				</div>			
-			<% end %>
-		</div>
-	<% end %>
+	<!-- Slide carousel with static images
+	To use dynamic images, please take a look at: http://stackoverflow.com/questions/37249854/rails-slider-with-image-caption
+	-->
+	<div id="mainCarousel" class="carousel slide" data-ride="carousel">
+	  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+	    <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>
+	    <li data-target="#mainCarousel" data-slide-to="1"></li>
+	    <li data-target="#mainCarousel" data-slide-to="2"></li>
+	    <li data-target="#mainCarousel" data-slide-to="3"></li>
+	  </ol>
+
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner" role="listbox">
+	    <div class="item active">
+	    <%= image_tag("action.jpg", alt: "Action", class: "carousel_image")%>
+	    </div>
+
+	    <div class="item">
+	      <%= image_tag("horror.jpg", alt: "Horror", class: "carousel_image")%>
+	    </div>
+
+	    <div class="item">
+	      <%= image_tag("literature.jpg", alt: "Literature", class: "carousel_image")%>
+	    </div>
+
+	    <div class="item">
+	      <%= image_tag("drama.png", alt: "Drama", class: "carousel_image")%>
+	    </div>
+	  </div>
+
+	  <!-- Left and right controls -->
+	  <a class="left carousel-control" href="#mainCarousel" role="button" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	    <span class="sr-only">Previous</span>
+	  </a>
+	  <a class="right carousel-control" href="#mainCarousel" role="button" data-slide="next">
+	    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	    <span class="sr-only">Next</span>
+	  </a>
+	</div>
+
+	<div class="container" style="margin-left: 0px;">
+		<h1 align="center">Listing books</h1>
+		<% @books.each_slice(3) do |books| %>
+			<div class="row">
+				<% books.each do |book| %>
+					<div class="card col-xs-4 book">
+						  <%= image_tag("book-store", class: "card-img-top")%>
+						  <div class="card-block">
+						    <h4 class="card-title"><%= book.title %></h4>
+						    <h6 class="card-subtitle mb-2 text-muted">
+						    	Categories: 
+						    	<% book.categories.each do |x|%>
+						    		<%= x.name + " " %> 
+						    	<% end %>
+						    </h6>
+						    <p class="card-text"><%= book.description %></p>
+						    <div class="row">
+									<p style="font-size: 18px;" class="card-text col-xs-5"><strong>$<%= book.price  %></strong></p>
+						    	<p class="card-text col-xs-3">
+										<strong style="font-size: 18px;">Quantity:</strong> 
+						    	</p>
+						    	<p class="card-text col-xs-3"><input type="number" class="form-control text-center" value="1"></p>
+						    </div>
+						  </div>
+						
+					</div>			
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 	<%= will_paginate @books %>
 </section>
