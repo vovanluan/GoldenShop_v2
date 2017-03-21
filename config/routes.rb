@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   }
 
   root "pages#home"
-
+  get '/cart', to: 'pages#cart' , as: 'cart'
+  post '/create-order', to: 'orders#create', as: 'create_order'
   resources :books
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
