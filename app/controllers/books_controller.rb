@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 	before_action :set_Book, only: [:edit, :update, :show, :destroy]
 	def index
-		@books = Book.all
+		@books = Book.all.select {|x| x.user.id == current_user.id}
 	end	
 	def new
 		@book = Book.new
@@ -30,6 +30,12 @@ class BooksController < ApplicationController
 	end
 
 	def edit
+		@book = Book.find(params[:id])
+		# Check current user permission
+		if current_user.id != @book.user.id 
+			flash[:notice] = "You don't have permission to access this page."
+			redirect_to books_path
+		end
 	end
 	def update
 		if @book.update(book_params)

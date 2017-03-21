@@ -1,17 +1,4 @@
-<h1>Listing all book</h1>
-<%= link_to "Create a new book", new_book_path %>
-<table>
-	<tr>
-		<th>Title</th>
-		<th>Description</th>
-	</tr>
-	<% @books.each do |a| %>
-	<tr>
-		<td><%= a.title %></td>
-		<td><%= a.description %></td>
-		<td><%= link_to 'Edit', edit_book_path(a) %></td>
-		<td><%= link_to 'Show', book_path(a) %></td>
-		<td><%= link_to 'Delete', book_path(a), method: :delete, data: {Confirm: "are you sure?"} %></td>
-	</tr>
-	<% end %>
-</table>
+<div class='container'>
+	<h1>My books</h1>
+	<%= render 'layouts/list_book', is_editable: true %>
+</div>

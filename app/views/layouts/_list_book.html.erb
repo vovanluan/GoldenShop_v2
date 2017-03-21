@@ -1,0 +1,41 @@
+<div class="row">
+	<% @books.each_slice(3) do |books| %>
+		<% books.each do |book| %>
+			<div class="card col-xs-3 book">
+				<%= link_to book_path(book.id) do %>
+					<%= image_tag(book.image.url, class: "card-img-top")%>
+				  <div class="card-block">
+				    <h4 class="card-title"><%= book.title %></h4>
+				    <h6 class="card-subtitle mb-2 text-muted">
+				    	Categories: 
+				    	<% book.categories.each do |x|%>
+				    		<%= x.name + " " %> 
+				    	<% end %>
+				    </h6>
+				    <h6 class="introduction">Introduction:</h6>
+				    <p class="card-text"><%= book.description %></p>
+				    <div class="row">
+							<p style="font-size: 18px;" class="card-text col-xs-3 price"><strong>Price: $<%= book.price  %></strong></p>
+				    	<p class="card-text col-xs-4">
+								<strong style="font-size: 16px;">Quantity:</strong> 
+				    	</p>
+				    	<p class="card-text col-xs-4"><input type="number" class="form-control text-center" value="1"></p>
+				    </div>
+				  </div>
+			  <% end %>
+				<% if is_editable %>
+				  <div class="row">
+		  			
+		  			<%= link_to "Edit this book", edit_book_path(book.id), class: "col-xs-5 btn btn-xs btn-primary"%>
+		  			<div class="col-xs-2"></div>
+						<%= link_to "Delete this book", book_path(book), method: :delete, 
+																	data: {confirm: "Are you sure?"}, 
+																	class: "btn btn-xs btn-danger col-xs-5" %>
+			  	</div>					
+			  <% end %>	
+
+			</div>
+		
+		<% end %>
+	<% end %>	
+</div>

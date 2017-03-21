@@ -1,0 +1,17 @@
+<ul>
+<% if @book.errors.any? %>
+<h2>The following errors prevented the book from getting created</h2>
+	<% @book.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+	<% end %>
+<% end %>
+</ul>
+
+<div class="row">
+	<div class="col-xs-12"></div>
+		<%= render 'layouts/book_form' %>
+	<div class="col-xs-4 col-xs-offset-4">
+		[<%= link_to "Cancel request and return to books listing", root_path %>]
+	</div>
+		
+</div>
