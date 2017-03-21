@@ -59,7 +59,7 @@
 				<% books.each do |book| %>
 					<div class="card col-xs-4 book">
 						<%= link_to book_path(book.id) do %>
-						  <%= image_tag("book-store", class: "card-img-top")%>
+							<%= image_tag(book.image.url, class: "card-img-top")%>
 							  <div class="card-block">
 							    <h4 class="card-title"><%= book.title %></h4>
 							    <h6 class="card-subtitle mb-2 text-muted">

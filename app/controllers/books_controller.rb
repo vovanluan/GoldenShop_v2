@@ -26,7 +26,7 @@ class BooksController < ApplicationController
 	def destroy 
 		@book.destroy
 		flash[:notice] = "Book was successfully deleted"
-		redirect_to Books_path
+		redirect_to books_path
 	end
 
 	def edit
@@ -34,14 +34,14 @@ class BooksController < ApplicationController
 	def update
 		if @book.update(book_params)
 			flash[:notice] = "Book was successfully updated"
-			redirect_to Book_path(@book)
+			redirect_to book_path(@book)
 		else
 			render 'edit'
 		end
 	end
 	private
 		def book_params
-			params.require(:book).permit(:title, :description, :price, :in_stock, category_ids: [])
+			params.require(:book).permit(:title, :description, :price, :in_stock, :image, category_ids: [])
 		end
 		def set_Book
 			@book = Book.find(params[:id])			

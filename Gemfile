@@ -205,3 +205,5 @@ gem 'rails_db'
 gem 'will_paginate', '~> 3.1.0'
 # Bootstrap for pagination
 gem 'bootstrap-will_paginate'
+# Scale image
+gem 'mini_magick'
