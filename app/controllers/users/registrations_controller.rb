@@ -9,7 +9,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    @user = User.new(create_params)
+    if @user.save
+      flash[:notice] = "Use was successfully created."
+      redirect_to new_user_session_path
+    else
+      flash[:alert] = "Something went wrong. Please try again."
+      render 'new'
+    end
   end
 
   # GET /resource/edit
@@ -19,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if current_user.update(user_params)
+    if current_user.update(update_params)
       sign_in(current_user, :bypass => true)
       flash[:notice] = "User was successfully updated"
       redirect_to edit_user_registration_path
@@ -34,8 +41,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private 
-  def user_params
+  def update_params
     params.require(:user).permit(:password, :password_confirmation, :avatar)
+  end
+  def create_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
   def set_user
     @user = user.find(params[:id])      
