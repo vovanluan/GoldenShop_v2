@@ -12,6 +12,6 @@ class OrdersController < ApplicationController
 
 	private
 	def create_params
-		params.permit(:book_id, :user_id, :quantity)
+		params.require(:order).permit(:book_id, :user_id, :quantity)
 	end
 end

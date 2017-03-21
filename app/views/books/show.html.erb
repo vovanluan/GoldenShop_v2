@@ -21,10 +21,14 @@
 				<strong style="font-size: 18px;">Quantity:</strong> 		
 			</p>
  			<div class="row">
-				<p class="card-text col-xs-3">
-					<%= number_field_tag "quantity", '1',  class: "form-control text-center"%>
-				</p>
-				<%= button_to 'Add to cart', {:controller => "orders", :action => "create", :book_id => @book.id, :user_id => current_user.id, :quantity => 1} , :method=>:post, class: "btn btn-xs btn-danger", style: "font-size: 18px;"  %>
+				<%= form_for(:order, :url => create_order_path) do |f| %>				
+					<p class="card-text col-xs-3">
+						<%= f.number_field :quantity, value: 1, class: "form-control text-center" %>
+					</p>
+	        <%= f.hidden_field :book_id, value: @book.id  %>
+	        <%= f.hidden_field :user_id, value: current_user.id  %>
+	        <%= f.submit "Add to cart", class: "btn btn-xs btn-danger", style: "font-size: 18px;" %>
+				<% end %>
 			</div>
 		</div>
 		<!-- BEGIN list similar book -->
