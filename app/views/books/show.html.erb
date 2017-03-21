@@ -2,7 +2,7 @@
 	<div class="row">
 		<!-- Book Image -->
 		<div class="col-xs-5">
-			<%= image_tag("book-store", class: "image")%>
+			<%= image_tag(@book.image.url, class: "image")%>
 		</div>
 
 		<!-- Book Description-->
@@ -32,7 +32,7 @@
 				<% @similarbooks.first(4).each do |similarbook|%>
 					<div class="card col-xs-3 book">
 						<%= link_to book_path(similarbook.id) do %>
-						  <%= image_tag("book-store", class: "card-img-top")%>
+						  <%= image_tag(similarbook.image.url, class: "card-img-top")%>
 							  <div class="card-block">
 							    <h4 class="card-title"><%= similarbook.title %></h4>
 							    <h6 class="card-subtitle mb-2 text-muted">

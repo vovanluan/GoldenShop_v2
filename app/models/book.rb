@@ -6,4 +6,5 @@ class Book < ActiveRecord::Base
 	validates :description, presence: true, length: { minimum: 10, maximum: 400}
 	validates :price, presence: true
 	validates :in_stock, presence: true
+	mount_uploader :image, ImageUploader
 end

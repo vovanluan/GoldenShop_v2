@@ -41,7 +41,7 @@ class BooksController < ApplicationController
 	end
 	private
 		def book_params
-			params.require(:book).permit(:title, :description, :price, :in_stock, category_ids: [])
+			params.require(:book).permit(:title, :description, :price, :in_stock, :image, category_ids: [])
 		end
 		def set_Book
 			@book = Book.find(params[:id])			
