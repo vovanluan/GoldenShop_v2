@@ -63,8 +63,51 @@
 		</div>
 		<div class="col-xs-4">
 			<h3 class="cart-title">Total:</h4>
-			<p class="price"><strong>$<%= total(current_user.id)%></strong></p>	
-			<button class="btn btn-xs btn-danger payment">Payment</button>
-		</div>
+			<p class="price"><strong>$<%= total(current_user.id) %></strong></p>	
+			<%=form_tag charges_path do %>
+			  <div id="error_explanation">
+			    <% if flash[:error].present? %>
+			      <p><%= flash[:error] %></p>
+			    <% end %>
+			  </div>
+			  <article>
+			    <%= hidden_field_tag "amount", total(current_user.id) %>
+			  </article>
+			  <article>
+			    <%= hidden_field_tag(:stripeToken) %>
+			  </article>
+			  <button id='payButton'>Pay <%= total(current_user.id) %></button>
+			<% end %>
+			<script src="https://checkout.stripe.com/checkout.js"></script>
+
+			<script>
+			var handler = StripeCheckout.configure({
+			  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+			  locale: 'auto',
+			  name: 'Book store',
+			  description: 'Products payment',
+			  token: function(token) {
+			    $('input#stripeToken').val(token.id);
+			    $('form').submit();
+			  }
+			});
+			$('#payButton').on('click', function(e) {
+			  e.preventDefault();
+
+			  $('#error_explanation').html('');
+
+			  var amount = $('#amount').val();
+			  alert(amount);
+			  amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+
+			  amount = parseFloat(amount);
+
+		    amount = amount * 100; // Needs to be an integer!
+		    handler.open({
+		      amount: Math.round(amount)
+		    })
+			  
+			});
+			</script>			
 	</div>
 </div>

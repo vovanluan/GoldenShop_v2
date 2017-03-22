@@ -5,4 +5,8 @@ module ApplicationHelper
 		@user.orders.each {|o| total += o.quantity * o.book.price}
 		total
 	end
+
+	def filter(category_id, books)
+		books = books.select {|b| category_id.in?(b.category_ids)}
+	end
 end
