@@ -30,31 +30,41 @@
 
 <div class="container">
 	<div class="row">
-		<h3 class="cart-title">My cart: <%=(@orders.size)%> products</h3>
-		<% @orders.each_slice(3) do |orders| %>
-			<% orders.each do |order| %>		
-				<div class="row cart-item">
-					<div class="col-xs-3">
-						<%= image_tag(order.book.image.url)%>
+		<div class="col-xs-8">
+			<h3 class="cart-title">My cart: <%=(@orders.size)%> products</h3>
+			<% @orders.each_slice(3) do |orders| %>
+				<% orders.each do |order| %>		
+					<div class="row cart-item">
+						<div class="col-xs-3">
+							<%= image_tag(order.book.image.url)%>
+						</div>
+						<div class="col-right row">
+							<div class="col-xs-3">
+								<h4 class="card-title"><strong><%= order.book.title %></strong></h4>
+								<%= link_to "Delete", delete_order_path(order.id), method: :delete, 
+																		data: {confirm: "Are you sure?"}, 
+																		class: "btn btn-xs btn-danger col-xs-5", style: "font-size: 15px; padding: 5px;" %>							
+							</div>
+							<div class="col-xs-3">
+								<p style="font-size: 18px;" class="card-text col-xs-3 price"><strong>Price: $<%= order.book.price * order.quantity %></strong></p>
+							</div>
+							<div class="col-xs-3">
+						    	<p class="card-text">
+										<strong style="font-size: 16px;">Quantity:</strong> 
+						    	</p>
+						    	<p>
+						    		<%= order.quantity %>
+						    	</p>
+							</div>
+						</div>
 					</div>
-					<div class="col-right row">
-						<div class="col-xs-3">
-							<h4 class="card-title"><strong><%= order.book.title %></strong></h4>
-						</div>
-						<div class="col-xs-3">
-							<p style="font-size: 18px;" class="card-text col-xs-3 price"><strong>Price: $<%= order.book.price * order.quantity %></strong></p>
-						</div>
-						<div class="col-xs-3">
-					    	<p class="card-text">
-									<strong style="font-size: 16px;">Quantity:</strong> 
-					    	</p>
-					    	<p>
-					    		<%= order.quantity %>
-					    	</p>
-						</div>
-					</div>
-				</div>
-			<% end %>
-		<% end %>		
+				<% end %>
+			<% end %>				
+		</div>
+		<div class="col-xs-4">
+			<h3 class="cart-title">Total:</h4>
+			<p class="price"><strong>$<%= total(current_user.id)%></strong></p>	
+			<button class="btn btn-xs btn-danger payment">Payment</button>
+		</div>
 	</div>
 </div>
