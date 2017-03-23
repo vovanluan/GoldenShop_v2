@@ -32,6 +32,9 @@ class ChargesController < ApplicationController
 				book.update(in_stock: remain)
 			end
 		end
+		# Implement sending email here
+		UserMailer.checkout_email(current_user)
+
 		redirect_to orders_path
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message

@@ -207,3 +207,5 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'bootstrap-will_paginate'
 # Scale image
 gem 'mini_magick'
+# Sending email
+gem 'actionmailer'
