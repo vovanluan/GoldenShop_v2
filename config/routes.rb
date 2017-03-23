@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/cart', to: 'pages#cart' , as: 'cart'
   post '/create-order', to: 'orders#create', as: 'create_order'
   get '/orders', to: 'orders#index', as: 'orders'
+  get '/all-orders', to: 'oders#all_oders,', as: 'all_oders'
   delete '/delete-order/:id', to: 'orders#destroy', as: 'delete_order'
   resources :books
   resources :charges, except: [:index, :show]

@@ -245,9 +245,12 @@ aside h5 {
 .new-btn {
   margin: 2em;
 }
-
 .tag {
   background-colo: rgb(250, 251, 252);
   border: 1px solid rgb(201, 218, 235);
   padding: 2px 5px;
+}
+.cover-img {
+  max-height: 25%;
+  width: auto;  
 }

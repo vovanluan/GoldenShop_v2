@@ -16,7 +16,9 @@
 																		class: "btn btn-xs btn-danger col-xs-5", style: "font-size: 15px; padding: 5px;" %>							
 							</div>
 							<div class="col-xs-3">
-								<p style="font-size: 18px;" class="card-text col-xs-3 price"><strong>Price: $<%= order.book.price * order.quantity %></strong></p>
+								<p style="font-size: 18px;" class="card-text col-xs-3 price">
+									<strong>Price: $<%= (order.book.price * order.quantity).round(2) %></strong>
+								</p>
 							</div>
 							<div class="col-xs-3">
 						    	<p class="card-text">

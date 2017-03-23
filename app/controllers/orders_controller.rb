@@ -23,7 +23,11 @@ class OrdersController < ApplicationController
 	end
 
 	def index
-		@orders = Order.all.select {|o| o.status != 1 && current_user.id == o.user_id}
+		if current_user.admin?
+			@orders = Order.all.select {|o| o.status != 1}
+		else	
+			@orders = Order.all.select {|o| o.status != 1 && current_user.id == o.user_id}
+		end
 	end
 
 	private
