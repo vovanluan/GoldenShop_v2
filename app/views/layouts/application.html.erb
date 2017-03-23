@@ -15,9 +15,7 @@
 				<h4 class="category-title">Category list</h4>
 				<% @categories.each do |c| %>
 					<div>
-						<a href="">
-							<h5><%=c.name %></h5>
-						</a>
+						<%= link_to c.name, books_path(id: c.id), class: "category-title"%>
 					</div>
 				<% end %>						
 			</aside>

@@ -41,9 +41,10 @@ To use dynamic images, please take a look at: http://stackoverflow.com/questions
 	  </a>
 	</div>		
 </div>
+<!-- End carousel-->
+
 <% if @books.length > 0 %>
 	<%= render 'layouts/list_book', is_editable: false %>		
 <% else %>
 	<%= flash[:notice] = "No result found." %>
 <% end %>
-<%= will_paginate @books %>

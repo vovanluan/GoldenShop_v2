@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
 
   root "books#index"
+  get '/user-books', to: 'books#user_books', as: 'user_books'
   get '/cart', to: 'pages#cart' , as: 'cart'
   post '/create-order', to: 'orders#create', as: 'create_order'
   delete '/delete-order/:id', to: 'orders#destroy', as: 'delete_order'

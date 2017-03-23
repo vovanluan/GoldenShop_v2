@@ -1,14 +1,25 @@
 class BooksController < ApplicationController
 	before_action :set_Book, only: [:edit, :update, :show, :destroy]
 	def index
-		#@books = Book.all.select {|x| x.user.id == current_user.id}
-		if params[:search]
+		if params[:id]
+			#@books = Book.filter(params[:id]).order("created_at DESC")
+			@books = Book.all.select {
+				|b| b.category_ids.include?(params[:id].to_i) 
+			}
+		elsif params[:search]
 			@books = Book.search(params[:search]).order("created_at DESC")
 		else
 			@books = Book.all
 		end
-		@books = @books.paginate(:page => params[:page], :per_page => 3)
+		#@books = Book.paginate(:page => params[:page], :per_page => 3)
 	end	
+
+	def user_books
+		@books = Book.all.select {|x| x.user.id == current_user.id}
+		#debugger
+		#@books = @books.paginate(:page => params[:page], :per_page => 3)
+	end
+
 	def new
 		@book = Book.new
 	end
