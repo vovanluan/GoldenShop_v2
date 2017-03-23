@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete '/delete-order/:id', to: 'orders#destroy', as: 'delete_order'
   resources :books
   resources :charges, except: [:index, :show]
+  resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

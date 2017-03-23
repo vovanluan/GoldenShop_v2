@@ -9,4 +9,8 @@ module ApplicationHelper
 	def filter(category_id, books)
 		books = books.select {|b| category_id.in?(b.category_ids)}
 	end
+
+	def is_admin
+		current_user.admin?
+	end
 end
