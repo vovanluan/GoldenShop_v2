@@ -23,8 +23,15 @@ class ChargesController < ApplicationController
 	    :currency    => 'usd'
 	  )
 
-		# Change order's status to new, then redirect to manage order page #
-		current_user.orders.each {|o| o.update(status: 2)}
+		# Change order's status to new, update number of book in stock and then redirect to manage order page #
+		current_user.orders.each do |order|
+			if order.status == 1
+				order.update(status: 2) 
+				book = Book.find(order.book_id)
+				remain = book.in_stock - order.quantity
+				book.update(in_stock: remain)
+			end
+		end
 		redirect_to orders_path
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
