@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Cover</th>
+					<th>Title</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @orders.each_slice(3) do |orders| %>
+					<% orders.each do |order| %>		
+						<tr>
+							<td>
+								<%= image_tag(order.book.image.url)%>
+							</td>
+							<td>
+								<h4 class="card-title"><strong><%= order.book.title %></strong></h4>
+							</td>
+							<td>
+								<p style="font-size: 18px;" class="card-text col-xs-3 price"><strong>Price: $<%= order.book.price * order.quantity %></strong></p>
+							</td>
+							<td>
+					    	<p>
+					    		<%= order.quantity %>
+					    	</p>								
+							</td>
+							<td>
+								<p><%=order.status_name%></p>
+							</td>
+						</tr>
+					<% end %>
+				<% end %>					
+			</tbody>
+		</table>
+</div>

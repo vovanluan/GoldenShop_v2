@@ -29,6 +29,9 @@
         <% if user_signed_in? %>
           <li><%= link_to "Sell a book", new_book_path %></li>
         <% end %>
+        <% if user_signed_in? %>
+          <li><%= link_to "Orders", orders_path %></li>
+        <% end %>
       </ul>
 <!--       
       <form class="navbar-form navbar-left">

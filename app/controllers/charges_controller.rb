@@ -23,8 +23,9 @@ class ChargesController < ApplicationController
 	    :currency    => 'usd'
 	  )
 
-	  # TODO: After successful payment, change orders status and redirect to another path
-	  
+		# Change order's status to new, then redirect to manage order page #
+		current_user.orders.each {|o| o.update(status: 2)}
+		redirect_to orders_path
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
 	  redirect_to cart_path

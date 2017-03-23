@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323043104) do
+ActiveRecord::Schema.define(version: 20170323074640) do
 
   create_table "book_categories", force: :cascade do |t|
     t.integer "book_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170323043104) do
     t.integer "quantity"
     t.integer "user_id"
     t.integer "book_id"
+    t.integer "status",   default: 1
   end
 
   add_index "orders", ["book_id"], name: "index_orders_on_book_id"

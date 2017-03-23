@@ -22,6 +22,10 @@ class OrdersController < ApplicationController
 		redirect_to cart_path
 	end
 
+	def index
+		@orders = Order.all.select {|o| o.status != 1 && current_user.id == o.user_id}
+	end
+
 	private
 	def create_params
 		params.require(:order).permit(:book_id, :user_id, :quantity)
