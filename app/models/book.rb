@@ -8,4 +8,8 @@ class Book < ActiveRecord::Base
 	validates :price, presence: true
 	validates :in_stock, presence: true
 	mount_uploader :image, ImageUploader
+
+	def self.search(search)
+	  where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
+	end
 end

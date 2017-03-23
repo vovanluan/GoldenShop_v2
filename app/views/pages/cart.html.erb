@@ -76,7 +76,7 @@
 			  <article>
 			    <%= hidden_field_tag(:stripeToken) %>
 			  </article>
-			  <button id='payButton'>Pay <%= total(current_user.id) %></button>
+			  <button id='payButton' class="btn btn-xs btn-danger payment">Check out</button>
 			<% end %>
 			<script src="https://checkout.stripe.com/checkout.js"></script>
 
@@ -97,7 +97,6 @@
 			  $('#error_explanation').html('');
 
 			  var amount = $('#amount').val();
-			  alert(amount);
 			  amount = amount.replace(/\$/g, '').replace(/\,/g, '')
 
 			  amount = parseFloat(amount);

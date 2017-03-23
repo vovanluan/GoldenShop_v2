@@ -9,12 +9,25 @@
 </head>
 <body>
 	<%= render 'layouts/navigation' %>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>			
 	<div class="container-fluid">
 		<div class="row">
-
-			<%= yield %>
+			<aside class="col-xs-3" id="left-aside">
+				<h4 class="category-title">Category list</h4>
+				<% @categories.each do |c| %>
+					<div>
+						<a href="">
+							<h5><%=c.name %></h5>
+						</a>
+					</div>
+				<% end %>						
+			</aside>
+			<section class="col-xs-9" id="right-section" style="margin: 0px; padding: 0px;">
+				<% if notice || alert %>
+					<p class="notice"><%= notice %></p>
+					<p class="alert"><%= alert %></p>				
+				<% end %>
+				<%= yield %>
+			</section>			
 		</div>
 	</div>
 

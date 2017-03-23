@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # before_action :authenticate_user!
   protect_from_forgery with: :exception
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :configure_permitted_parameters, if: :devise_controller? 
+  before_filter :get_categories
 
   protected
 
@@ -13,4 +14,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password,
       :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar) }
   end  
+
+  def get_categories
+    @categories = Category.all
+  end
 end

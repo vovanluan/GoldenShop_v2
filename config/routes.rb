@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     :registrations => "users/registrations"
   }
 
-  root "pages#home"
+  root "books#index"
   get '/cart', to: 'pages#cart' , as: 'cart'
   post '/create-order', to: 'orders#create', as: 'create_order'
   delete '/delete-order/:id', to: 'orders#destroy', as: 'delete_order'

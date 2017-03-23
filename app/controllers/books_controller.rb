@@ -1,7 +1,13 @@
 class BooksController < ApplicationController
 	before_action :set_Book, only: [:edit, :update, :show, :destroy]
 	def index
-		@books = Book.all.select {|x| x.user.id == current_user.id}
+		#@books = Book.all.select {|x| x.user.id == current_user.id}
+		if params[:search]
+			@books = Book.search(params[:search]).order("created_at DESC")
+		else
+			@books = Book.all
+		end
+		@books = @books.paginate(:page => params[:page], :per_page => 3)
 	end	
 	def new
 		@book = Book.new
@@ -52,6 +58,4 @@ class BooksController < ApplicationController
 		def set_Book
 			@book = Book.find(params[:id])			
 		end
-
-
 end
