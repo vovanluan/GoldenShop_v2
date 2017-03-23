@@ -5,11 +5,10 @@
 				<%= link_to book_path(book.id) do %>
 					<%= image_tag(book.image.url, class: "card-img-top")%>
 				  <div class="card-block">
-				    <h4 class="card-title"><%= book.title %></h4>
-				    <h6 class="card-subtitle mb-2 text-muted">
-				    	Categories: 
-				    	<% book.categories.each do |x|%>
-				    		<%= x.name + " " %> 
+				    <h3 class="card-title"><%= book.title %></h3>
+				    <h6 class="card-subtitle mb-2 text-muted inline">
+				    	<% book.categories.each do |c|%>
+				    		<%= link_to c.name, root_path(id: c.id), class: "tag"%>
 				    	<% end %>
 				    </h6>
 				    <h6 class="introduction">Introduction:</h6>
@@ -17,9 +16,9 @@
 				    <div class="row">
 							<p style="font-size: 18px;" class="card-text col-xs-3 price"><strong>Price: $<%= book.price  %></strong></p>
 				    	<p class="card-text col-xs-4">
-								<strong style="font-size: 16px;">Quantity:</strong> 
+								<strong style="font-size: 16px; float: right">Quantity:</strong> 
 				    	</p>
-				    	<p class="card-text col-xs-4"><input type="number" class="form-control text-center" value="1"></p>
+				    	<p class="card-text col-xs-4" style="padding-left: 0px;"><input type="number" class="form-control text-center" value="1"></p>
 				    </div>
 				  </div>
 			  <% end %>

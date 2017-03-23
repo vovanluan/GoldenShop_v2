@@ -40,11 +40,10 @@
 						<%= link_to book_path(similarbook.id) do %>
 						  <%= image_tag(similarbook.image.url, class: "card-img-top")%>
 							  <div class="card-block">
-							    <h4 class="card-title"><%= similarbook.title %></h4>
-							    <h6 class="card-subtitle mb-2 text-muted">
-							    	Categories: 
-							    	<% similarbook.categories.each do |x|%>
-							    		<%= x.name + " " %> 
+							    <h3 class="card-title"><%= similarbook.title %></h3>
+							    <h6 class="card-subtitle mb-2 text-muted inline">
+							    	<% similarbook.categories.each do |c|%>
+							    		<%= link_to c.name, root_path(id: c.id), class: "tag"%>
 							    	<% end %>
 							    </h6>
 									<p style="font-size: 16px;" class="card-text price"><strong>Price: $<%= similarbook.price  %></strong></p>							    
