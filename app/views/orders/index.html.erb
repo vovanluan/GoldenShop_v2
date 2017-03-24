@@ -3,6 +3,9 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<% if current_user.admin? %>
+						<th><h3>User</h3></th>
+					<% end %>
 					<th><h3>Cover</h3></th>
 					<th><h3>Title</h3></th>
 					<th><h3>Price</h3></th>
@@ -14,6 +17,9 @@
 				<% @orders.each_slice(3) do |orders| %>
 					<% orders.each do |order| %>		
 						<tr>
+							<% if current_user.admin? %>
+								<th><h3><%= order.user.email %></h3></th>
+							<% end %>							
 							<td>
 								<%= image_tag(order.book.image.url, class: "cover-img")%>
 							</td>
