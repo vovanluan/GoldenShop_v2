@@ -11,23 +11,34 @@
 	<%= render 'layouts/navigation' %>
 	<div class="container-fluid">
 		<div class="row">
-			<aside class="col-xs-3" id="left-aside">
-				<h4 class="category-title">Category list</h4>
-				<% @categories.each do |c| %>
-					<div>
-						<%= link_to c.name, books_path(id: c.id), class: "category-title"%>
-					</div>
-				<% end %>						
-			</aside>
-			<section class="col-xs-9" id="right-section" style="margin: 0px; padding: 0px;">
-				<% if notice || alert %>
-					<p class="notice"><%= notice %></p>
-					<p class="alert"><%= alert %></p>				
-				<% end %>
-				<%= yield %>
-			</section>			
+			<div class="jumbotron">
+				<div class="slogan">
+					<h1 style="text-align: center;" class="title-font">
+						<span style="letter-spacing: 0.1em;">THE BOOK LOVER</span>
+					</h1>
+					<h5 style="text-align: center; font-size: 2em;", class="title-font">READ ALL ABOUT IT</h5>					
+				</div>
+
+			</div>
+			<div id="content">
+				<aside class="col-xs-3" id="left-aside">
+					<h4 class="category-title">Category list</h4>
+					<% @categories.each do |c| %>
+						<div>
+							<%= link_to c.name, books_path(id: c.id), class: "category-title"%>
+						</div>
+					<% end %>						
+				</aside>
+				<section class="col-xs-9" id="right-section" style="margin: 0px; padding: 0px;">
+					<% if notice || alert %>
+						<p class="notice"><%= notice %></p>
+						<p class="alert"><%= alert %></p>				
+					<% end %>
+					<%= yield %>
+				</section>				
+			</div>
+			
 		</div>
 	</div>
-
 </body>
 </html>

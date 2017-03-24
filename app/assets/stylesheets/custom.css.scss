@@ -254,3 +254,22 @@ aside h5 {
   max-height: 25%;
   width: auto;  
 }
+.theme {
+  position: absolute;
+}
+.slogan {
+  background-color: rgba(219, 91, 67, 1);
+  display: table;
+  margin: auto auto;
+  padding: 1em 2em;
+  z-index: 3;
+  top: 20px;
+}
+.jumbotron {
+  background-image: image-url("theme.jpg");
+  margin-bottom: 0px;
+}
+.title-font {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    color: #FFFFFF !important;
+}

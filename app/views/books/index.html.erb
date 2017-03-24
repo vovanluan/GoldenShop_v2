@@ -1,9 +1,9 @@
 <!-- Slide carousel with static images
 To use dynamic images, please take a look at: http://stackoverflow.com/questions/37249854/rails-slider-with-image-caption
 -->
+<!--
 <div class="slide-show col-xs-12">
 	<div id="mainCarousel" class="carousel slide" data-ride="carousel">
-	  <!-- Indicators -->
 	  <ol class="carousel-indicators">
 	    <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>
 	    <li data-target="#mainCarousel" data-slide-to="1"></li>
@@ -11,7 +11,6 @@ To use dynamic images, please take a look at: http://stackoverflow.com/questions
 	    <li data-target="#mainCarousel" data-slide-to="3"></li>
 	  </ol>
 
-	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner" role="listbox">
 	    <div class="item active">
 	    <%= image_tag("action.jpg", alt: "Action", class: "carousel_image")%>
@@ -30,7 +29,6 @@ To use dynamic images, please take a look at: http://stackoverflow.com/questions
 	    </div>
 	  </div>
 
-	  <!-- Left and right controls -->
 	  <a class="left carousel-control" href="#mainCarousel" role="button" data-slide="prev">
 	    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 	    <span class="sr-only">Previous</span>
@@ -41,6 +39,7 @@ To use dynamic images, please take a look at: http://stackoverflow.com/questions
 	  </a>
 	</div>		
 </div>
+-->
 <!-- End carousel-->
 
 <% if @books.length > 0 %>

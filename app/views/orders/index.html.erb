@@ -31,7 +31,14 @@
 					    	</p>								
 							</td>
 							<td>
-								<p><%=order.status_name%></p>
+								<% if current_user.admin? %>
+								<%= form_for(:order, method: :put, url: update_order_path(order)) do |f| %>
+									<%= f.select(:status, options_for_select(Order::STATUSES.values, order.status_name), class: "selectpicker")%>
+									<%= f.submit "Update status", class: "btn btn-xs btn-primary", style: "font-size: 1em;" %>
+								<% end %>
+								<% else %>
+									<p><%= order.status_name %></p>
+								<% end %>
 							</td>
 						</tr>
 					<% end %>

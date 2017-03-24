@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 	before_action :set_Book, only: [:edit, :update, :show, :destroy]
 	def index
-		UserMailer.checkout_email(current_user).deliver
+		#UserMailer.checkout_email(current_user).deliver
 		if params[:id]
 			#@books = Book.filter(params[:id]).order("created_at DESC")
 			@books = Book.all.select {
