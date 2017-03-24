@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 		#check user is admin
+	before_action :authenticate_user!
 	def new
 		@category = Category.new
 	end

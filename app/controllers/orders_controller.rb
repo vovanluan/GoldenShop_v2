@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+	before_action :authenticate_user!
 	def create
 		@order = Order.new(create_params)
 		@book = @order.book

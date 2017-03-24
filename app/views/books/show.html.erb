@@ -29,7 +29,9 @@
 								<%= f.number_field :quantity, value: 1, class: "form-control text-center" %>
 							</p>
 			        <%= f.hidden_field :book_id, value: @book.id  %>
-			        <%= f.hidden_field :user_id, value: current_user.id  %>
+			        <% if user_signed_in? %>
+			        	<%= f.hidden_field :user_id, value: current_user.id  %>
+			        <% end %>	
 			        <%= f.submit "Add to cart", class: "btn btn-xs btn-danger", style: "font-size: 18px;" %>
 						<% end %>
 					</div>					
