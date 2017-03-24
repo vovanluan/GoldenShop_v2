@@ -7,12 +7,11 @@
 
 		<!-- Book Description-->
 		<div class="col-xs-7">
-			<h4 class="card-title title"><%= @book.title %></h4>
-			<h6 class="card-subtitle mb-2 text-muted categories">
-				Categories: 
-				<% @book.categories.each do |x|%>
-					<%= x.name + " " %> 
-				<% end %>
+			<h2 class="card-title title"><%= @book.title %></h2>
+			<h6 class="card-subtitle mb-2 text-muted categories inline">
+	    	<% @book.categories.each do |c|%>
+	    		<%= link_to c.name, root_path(id: c.id), class: "tag"%>
+	    	<% end %>
 			</h6>
 			<h6 class="introduction">Introduction:</h6>
 			<p class="card-text description"><%= @book.description %></p>

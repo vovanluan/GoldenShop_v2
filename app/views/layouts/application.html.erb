@@ -8,7 +8,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>  
 </head>
 <body>
-	<%= render 'layouts/navigation' %>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="jumbotron">
@@ -18,26 +17,30 @@
 					</h1>
 					<h5 style="text-align: center; font-size: 2em;", class="title-font">READ ALL ABOUT IT</h5>					
 				</div>
-
-			</div>
-			<div id="content">
-				<aside class="col-xs-3" id="left-aside">
-					<h4 class="category-title">Category list</h4>
-					<% @categories.each do |c| %>
-						<div>
-							<%= link_to c.name, books_path(id: c.id), class: "category-title"%>
-						</div>
-					<% end %>						
-				</aside>
-				<section class="col-xs-9" id="right-section" style="margin: 0px; padding: 0px;">
-					<% if notice || alert %>
-						<p class="notice"><%= notice %></p>
-						<p class="alert"><%= alert %></p>				
-					<% end %>
-					<%= yield %>
-				</section>				
 			</div>
 			
+			<div id="content">
+				<div class="row">
+<!-- 					<aside class="col-xs-2" id="left-aside">
+						<h4 class="category-title">Category list</h4>
+						<% @categories.each do |c| %>
+							<div>
+								<%= link_to c.name, books_path(id: c.id), class: "category-title"%>
+							</div>
+						<% end %>						
+					</aside> -->
+					<section class="col-xs-12" id="right-section" style="margin: 0px; padding: 0px;">	
+						<%= render 'layouts/navigation' %>			
+						<% if notice || alert %>
+							<div style="margin: 0px auto; width: 25%">
+								<p class="notice"><%= notice %></p>
+								<p class="alert"><%= alert %></p>									
+							</div>
+						<% end %>
+						<%= yield %>
+					</section>		
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

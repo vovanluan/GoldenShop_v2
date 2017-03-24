@@ -9,20 +9,19 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to root_path do %>
-        <%= image_tag("logo", class: "logo-image")%>
+        <!--<%= image_tag("logo", class: "logo-image")%>-->
       <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><%= link_to "Home", root_path%></li>
-        <li><a href="#">Special</a></li>
+      <ul class="nav navbar-nav primary">
+        <li><%= link_to "Home", root_path%></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu sub">
             <% Category.all.each do |c| %>
-              <li><%= link_to c.name, root_path(c.id) %></li>
+              <li><%= link_to c.name, books_path(id: c.id) %></li>
             <% end %>
           </ul>
         </li>
@@ -32,21 +31,16 @@
         <% if user_signed_in? %>
           <li><%= link_to "Orders", orders_path %></li>
         <% end %>
+        <li><a href="">Contact</a></li>
       </ul>
-<!--       
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form> -->
-      <%= form_tag(books_path, :method => "get", class: "navbar-form navbar-left") do %>
-        <div class="form-group">
-          <%= text_field_tag :search, params[:search], placeholder: "Search Books", class: "form-control" %>
-          <%= submit_tag "Search", :name => nil, class: "btn btn-default"%>          
-        </div>
-      <% end %>      
-      <ul class="nav navbar-nav navbar-right">
+      <div class="col-xs-4" id ="search">
+        <%= form_tag(books_path, :method => "get", class: "navbar-form navbar-left") do %>
+          <%= submit_tag "Search", :name => nil, class: "btn btn-default pull-left"%>
+          <%= text_field_tag :search, params[:search], placeholder: "What are you looking for?", class: "form-control animated-search pull-left", style: "width: 75%;" %>
+        <% end %>         
+      </div>
+     
+      <ul class="nav navbar-nav navbar-right primary">
         <% if user_signed_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong><%= current_user.email %></strong> <span class="caret"></span></a>
