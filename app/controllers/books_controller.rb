@@ -2,15 +2,14 @@ class BooksController < ApplicationController
 	before_action :set_Book, only: [:edit, :update, :show, :destroy]
 	def index
 		#UserMailer.checkout_email(current_user).deliver
+		@books = Book.paginate(:page => params[:page], :per_page => 2)
 		if params[:id]
-			#@books = Book.filter(params[:id]).order("created_at DESC")
+			#will_paginate doesn't work after filter
 			@books = Book.all.select {
 				|b| b.category_ids.include?(params[:id].to_i) 
 			}
 		elsif params[:search]
-			@books = Book.search(params[:search]).order("created_at DESC")
-		else
-			@books = Book.all
+			@books = Book.paginate(:page => params[:page], :per_page => 2).search(params[:search]).order("created_at DESC")
 		end
 		#@books = Book.paginate(:page => params[:page], :per_page => 3)
 	end	
