@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_action :configure_sign_up_params, only: [:create]
-# before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
@@ -27,12 +27,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     if current_user.update(update_params)
-      sign_in(current_user, :bypass => true)
+      sign_in(current_user, bypass: true)
       flash[:notice] = "User was successfully updated"
       redirect_to edit_user_registration_path
     else
       render 'edit'
-    end   
+    end
   end
 
   # DELETE /resource
@@ -40,15 +40,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  private 
+  private
+
   def update_params
     params.require(:user).permit(:password, :password_confirmation, :avatar)
   end
+
   def create_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
+
   def set_user
-    @user = user.find(params[:id])      
+    @user = user.find(params[:id])
   end
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

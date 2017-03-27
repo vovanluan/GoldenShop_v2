@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
   }
 
   validates_inclusion_of :status, in: STATUSES.keys,
-      message: "{{value}} must be in #{STATUSES.values.join ','}"
+    message: "{{value}} must be in #{STATUSES.values.join ','}"
 
   # just a helper method for the view
   def status_name

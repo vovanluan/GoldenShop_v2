@@ -9,8 +9,9 @@ gem 'rails', '4.2.5'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
+gem 'sdoc', '~> 0.4.0', group: :doc
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -23,27 +24,27 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+gem 'sass-rails', '~> 5.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-gem 'font-awesome-rails'
 # handle javascript datetime
 gem 'momentjs-rails'
 # show progressbar while navigate between pages
 gem 'nprogress-rails'
 # generate js chart from server side
-gem "highcharts-rails"
-gem 'chartkick'
-gem "select2-rails"
 gem 'bootstrap3-datetimepicker-rails'
+gem 'chartkick'
+gem "highcharts-rails"
+gem "select2-rails"
 
 ### MVC EXTENSIONS
 ## COMMON
 gem 'chronic'
 # role
-gem 'pundit'
 gem 'draper'
+gem 'pundit'
 # background job
 # this gem uses concurrent-ruby to create in-memory delay jobs, thus it can be deployed to any environment
 # for more functionalities, we should use Sidekiq instead
@@ -78,7 +79,6 @@ gem 'aasm'
 gem 'groupdate'
 gem 'hightop'
 
-
 ## VIEWS
 # nested layout, allow to smaller layout rather than only applicatin layout
 gem 'nestive'
@@ -96,7 +96,6 @@ gem 'kaminari'
 gem 'meta-tags'
 # process markdown text
 # gem 'redcarpet'
-
 
 ## CONTROLLERS
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -117,9 +116,8 @@ gem 'friendly_id', '~> 5.1.0'
 
 # use this gem if we use Mailchimp API
 # gem 'gibbon'
-
-# payment gateway
- gem 'stripe'
+# rubo payment gateway
+gem 'stripe'
 # online exchange rate
 # gem 'eu_central_bank'
 
@@ -128,18 +126,17 @@ gem 'friendly_id', '~> 5.1.0'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
-  gem 'listen'
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
   gem 'guard-bundler'
+  gem 'guard-puma'
   gem 'guard-rails'
   gem 'guard-rspec'
-  gem 'guard-puma'
   gem 'guard-spring'
   gem 'letter_opener'
+  gem 'listen'
   gem 'rack-mini-profiler', require: false
   gem 'rails_layout'
   gem 'rb-fchange', require: false
@@ -148,6 +145,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-commands-rubocop'
+  gem 'web-console'
 end
 group :development, :test do
   # For development
@@ -164,19 +162,20 @@ group :production do
 end
 group :test do
   gem 'capybara'
+  gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-json', require: false
-  gem 'coveralls', require: false
+
   # specialized in json api testing
   gem 'airborne'
   # to be used with Code Climate
   # gem 'codeclimate-test-reporter'
-  gem 'webmock'
   gem 'timecop'
+  gem 'webmock'
 end
 
 ### TOOLS
