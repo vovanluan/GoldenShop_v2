@@ -1,85 +1,85 @@
 <div class="container">
-	<div class="row">
-		<div class="col-xs-8">
-			<h3 class="cart-title">My cart: <%=(@orders.size)%> products</h3>
-			<% @orders.each_slice(3) do |orders| %>
-				<% orders.each do |order| %>		
-					<div class="row cart-item">
-						<div class="col-xs-3">
-							<%= image_tag(order.book.image.url)%>
-						</div>
-						<div class="col-right row">
-							<div class="col-xs-3">
-								<h4 class="card-title"><strong><%= order.book.title %></strong></h4>
-								<%= link_to "Delete", delete_order_path(order.id), method: :delete, 
-																		data: {confirm: "Are you sure?"}, 
-																		class: "btn btn-xs btn-danger col-xs-5", style: "font-size: 15px; padding: 5px;" %>							
-							</div>
-							<div class="col-xs-3">
-								<p style="font-size: 18px;" class="card-text col-xs-3 price">
-									<strong>Price: $<%= (order.book.price * order.quantity).round(2) %></strong>
-								</p>
-							</div>
-							<div class="col-xs-3">
-						    	<p class="card-text">
-										<strong style="font-size: 16px;">Quantity:</strong> 
-						    	</p>
-						    	<p>
-						    		<%= order.quantity %>
-						    	</p>
-							</div>
-						</div>
-					</div>
-				<% end %>
-			<% end %>				
-		</div>
-		<div class="col-xs-4">
-			<h3 class="cart-title">Total:</h3>
-			<p class="price"><strong>$<%= total(current_user.id) %></strong></p>	
-			<%=form_tag charges_path do %>
-			  <div id="error_explanation">
-			    <% if flash[:error].present? %>
-			      <p><%= flash[:error] %></p>
-			    <% end %>
-			  </div>
-			  <article>
-			    <%= hidden_field_tag "amount", total(current_user.id) %>
-			  </article>
-			  <article>
-			    <%= hidden_field_tag(:stripeToken) %>
-			  </article>
-			  <button id='payButton' class="btn btn-xs btn-danger payment">Check out</button>
-			<% end %>
-			<script src="https://checkout.stripe.com/checkout.js"></script>
+  <div class="row">
+    <div class="col-xs-8">
+      <h3 class="cart-title">My cart: <%=(@orders.size)%> products</h3>
+      <% @orders.each_slice(3) do |orders| %>
+        <% orders.each do |order| %>
+          <div class="row cart-item">
+            <div class="col-xs-3">
+              <%= image_tag(order.book.image.url)%>
+            </div>
+            <div class="col-right row">
+              <div class="col-xs-3">
+                <h4 class="card-title"><strong><%= order.book.title %></strong></h4>
+                <%= link_to "Delete", delete_order_path(order.id), method: :delete,
+                                    data: {confirm: "Are you sure?"},
+                                    class: "btn btn-xs btn-danger col-xs-5", style: "font-size: 15px; padding: 5px;" %>
+              </div>
+              <div class="col-xs-3">
+                <p style="font-size: 18px;" class="card-text col-xs-3 price">
+                  <strong>Price: $<%= (order.book.price * order.quantity).round(2) %></strong>
+                </p>
+              </div>
+              <div class="col-xs-3">
+                  <p class="card-text">
+                    <strong style="font-size: 16px;">Quantity:</strong>
+                  </p>
+                  <p>
+                    <%= order.quantity %>
+                  </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-xs-4">
+      <h3 class="cart-title">Total:</h3>
+      <p class="price"><strong>$<%= total(current_user.id) %></strong></p>
+      <%=form_tag charges_path do %>
+        <div id="error_explanation">
+          <% if flash[:error].present? %>
+            <p><%= flash[:error] %></p>
+          <% end %>
+        </div>
+        <article>
+          <%= hidden_field_tag "amount", total(current_user.id) %>
+        </article>
+        <article>
+          <%= hidden_field_tag(:stripeToken) %>
+        </article>
+        <button id='payButton' class="btn btn-xs btn-danger payment">Check out</button>
+      <% end %>
+      <script src="https://checkout.stripe.com/checkout.js"></script>
 
-			<script>
-			var handler = StripeCheckout.configure({
-			  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
-			  locale: 'auto',
-			  name: 'Book store',
-			  description: 'Products payment',
-			  token: function(token) {
-			    $('input#stripeToken').val(token.id);
-			    $('form').submit();
-			  }
-			});
-			$('#payButton').on('click', function(e) {
-			  e.preventDefault();
+      <script>
+      var handler = StripeCheckout.configure({
+        key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+        locale: 'auto',
+        name: 'Book store',
+        description: 'Products payment',
+        token: function(token) {
+          $('input#stripeToken').val(token.id);
+          $('form').submit();
+        }
+      });
+      $('#payButton').on('click', function(e) {
+        e.preventDefault();
 
-			  $('#error_explanation').html('');
+        $('#error_explanation').html('');
 
-			  var amount = $('#amount').val();
-			  amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+        var amount = $('#amount').val();
+        amount = amount.replace(/\$/g, '').replace(/\,/g, '')
 
-			  amount = parseFloat(amount);
+        amount = parseFloat(amount);
 
-		    amount = amount * 100; // Needs to be an integer!
-		    handler.open({
-		      amount: Math.round(amount)
-		    })
-			  
-			});
-			</script>		
-		</div>	
-	</div>
+        amount = amount * 100; // Needs to be an integer!
+        handler.open({
+          amount: Math.round(amount)
+        })
+
+      });
+      </script>
+    </div>
+  </div>
 </div>

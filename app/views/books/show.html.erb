@@ -1,71 +1,71 @@
 <div class="containter" style="margin-left: 20%; margin-right: 20%; margin-top: 15px;">
-	<div class="row">
-		<!-- Book Image -->
-		<div class="col-xs-5">
-			<%= image_tag(@book.image.url, class: "image")%>
-		</div>
+  <div class="row">
+    <!-- Book Image -->
+    <div class="col-xs-5">
+      <%= image_tag(@book.image.url, class: "image")%>
+    </div>
 
-		<!-- Book Description-->
-		<div class="col-xs-7">
-			<h2 class="card-title title"><%= @book.title %></h2>
-			<h6 class="card-subtitle mb-2 text-muted categories inline">
-	    	<% @book.categories.each do |c|%>
-	    		<%= link_to c.name, root_path(id: c.id), class: "tag"%>
-	    	<% end %>
-			</h6>
-			<h6 class="introduction">Introduction:</h6>
-			<p class="card-text description"><%= @book.description %></p>
-			<p style="font-size: 18px;" class="card-text price"><strong>Price: $<%= @book.price  %></strong></p>
+    <!-- Book Description-->
+    <div class="col-xs-7">
+      <h2 class="card-title title"><%= @book.title %></h2>
+      <h6 class="card-subtitle mb-2 text-muted categories inline">
+        <% @book.categories.each do |c|%>
+          <%= link_to c.name, root_path(id: c.id), class: "tag"%>
+        <% end %>
+      </h6>
+      <h6 class="introduction">Introduction:</h6>
+      <p class="card-text description"><%= @book.description %></p>
+      <p style="font-size: 18px;" class="card-text price"><strong>Price: $<%= @book.price  %></strong></p>
 
-			<div class="row">
-				<div class="col-xs-8">
-					<p class="card-text">
-						<strong style="font-size: 18px;">Quantity:</strong> 		
-					</p>
-		 			<div class="row">
-						<%= form_for(:order, :url => create_order_path) do |f| %>				
-							<p class="card-text col-xs-3">
-								<%= f.number_field :quantity, value: 1, class: "form-control text-center" %>
-							</p>
-			        <%= f.hidden_field :book_id, value: @book.id  %>
-			        <% if user_signed_in? %>
-			        	<%= f.hidden_field :user_id, value: current_user.id  %>
-			        <% end %>	
-			        <%= f.submit "Add to cart", class: "btn btn-xs btn-danger", style: "font-size: 18px;" %>
-						<% end %>
-					</div>					
-				</div>
-				<div class="col-xs-4">
-					<p class="card-text" style="font-size: 18px;">
-						<strong>In stock: <%=@book.in_stock%></strong>
-						</p>
-				</div>				
-			</div>
+      <div class="row">
+        <div class="col-xs-8">
+          <p class="card-text">
+            <strong style="font-size: 18px;">Quantity:</strong>
+          </p>
+           <div class="row">
+            <%= form_for(:order, :url => create_order_path) do |f| %>
+              <p class="card-text col-xs-3">
+                <%= f.number_field :quantity, value: 1, class: "form-control text-center" %>
+              </p>
+              <%= f.hidden_field :book_id, value: @book.id  %>
+              <% if user_signed_in? %>
+                <%= f.hidden_field :user_id, value: current_user.id  %>
+              <% end %>
+              <%= f.submit "Add to cart", class: "btn btn-xs btn-danger", style: "font-size: 18px;" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <p class="card-text" style="font-size: 18px;">
+            <strong>In stock: <%=@book.in_stock%></strong>
+            </p>
+        </div>
+      </div>
 
-		</div>
+    </div>
 
-		<!-- BEGIN list similar book -->
-		<div class="col-xs-12" style="margin-top: 30px;">
-			<h3 style="border-bottom: solid 1px gray; padding-bottom: 10px;"><strong>Similar books</strong></h3>
-			<div class="row" style="padding-top: 10px;">
-				<% @similarbooks.first(4).each do |similarbook|%>
-					<div class="card col-xs-3 book">
-						<%= link_to book_path(similarbook.id) do %>
-						  <%= image_tag(similarbook.image.url, class: "card-img-top")%>
-							  <div class="card-block">
-							    <h3 class="card-title"><%= similarbook.title %></h3>
-							    <h6 class="card-subtitle mb-2 text-muted inline">
-							    	<% similarbook.categories.each do |c|%>
-							    		<%= link_to c.name, root_path(id: c.id), class: "tag"%>
-							    	<% end %>
-							    </h6>
-									<p style="font-size: 16px;" class="card-text price"><strong>Price: $<%= similarbook.price  %></strong></p>							    
-							  </div>
-					  <% end %>
-					</div>							
-				<% end %>
-			</div>
-		</div>		
-		<!-- END list similar book -->
-	</div>	
+    <!-- BEGIN list similar book -->
+    <div class="col-xs-12" style="margin-top: 30px;">
+      <h3 style="border-bottom: solid 1px gray; padding-bottom: 10px;"><strong>Similar books</strong></h3>
+      <div class="row" style="padding-top: 10px;">
+        <% @similarbooks.first(4).each do |similarbook|%>
+          <div class="card col-xs-3 book">
+            <%= link_to book_path(similarbook.id) do %>
+              <%= image_tag(similarbook.image.url, class: "card-img-top")%>
+                <div class="card-block">
+                  <h3 class="card-title"><%= similarbook.title %></h3>
+                  <h6 class="card-subtitle mb-2 text-muted inline">
+                    <% similarbook.categories.each do |c|%>
+                      <%= link_to c.name, root_path(id: c.id), class: "tag"%>
+                    <% end %>
+                  </h6>
+                  <p style="font-size: 16px;" class="card-text price"><strong>Price: $<%= similarbook.price  %></strong></p>
+                </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- END list similar book -->
+  </div>
 </div>

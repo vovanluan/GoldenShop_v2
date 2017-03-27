@@ -1,5 +1,5 @@
 class AddInStockToBooks < ActiveRecord::Migration
   def change
-  	add_column :books, :in_stock, :integer
+    add_column :books, :in_stock, :integer
   end
 end

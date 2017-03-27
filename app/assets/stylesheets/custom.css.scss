@@ -7,44 +7,44 @@ body {
     background-color: #F0F8FF;
 }
 .nav > li > a {
-	font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 img.logo-image{
-	max-height: 50px;
-	width: auto;
-	background-color: #e74c3c;
+  max-height: 50px;
+  width: auto;
+  background-color: #e74c3c;
 }
 
 footer {
-	background-color: #ddd;
+  background-color: #ddd;
 }
 
 .category-title {
-	font-size: 1.8em;
-	color: #fff;
+  font-size: 1.8em;
+  color: #fff;
 }
 
 .navbar {
-	margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 aside {
-	text-align: center;
-	background-color: #9b59b6;
+  text-align: center;
+  background-color: #9b59b6;
 }
 aside h4 {
-	margin-top: 0px;
+  margin-top: 0px;
 }
 
 aside h5 {
-	color: #ecf0f1;
-	font-size: 1.5em;
+  color: #ecf0f1;
+  font-size: 1.5em;
 }
 
 .book{
   margin-bottom: 80px;
-	padding: 10px;
+  padding: 10px;
 }
 .book-title {
   text-align: center;
@@ -53,15 +53,15 @@ aside h5 {
   margin: 0px;
 }
 .book>a {
-	margin: 5px;
+  margin: 5px;
   padding: 10px;
 }
 .book:hover {
-	border: solid 1px gray;
+  border: solid 1px gray;
 }
 .card-img-top {
-	display:block;
-	margin: 0px auto;
+  display:block;
+  margin: 0px auto;
   height: 20em !important;
   width: auto;
 }
@@ -78,44 +78,44 @@ aside h5 {
     top: 72%;
 }
 #mainCarousel {
-	border-bottom: thick 1px gray;
-}	
+  border-bottom: thick 1px gray;
+}
 .slide-show {
-	padding: 0px;
-	border: solid 2px gray;
+  padding: 0px;
+  border: solid 2px gray;
 }
 .title {
-	font-size: 25px;
-	color: orange;
+  font-size: 25px;
+  color: orange;
 }
 .categories {
-	font-size: 20px;
-	color: blue;
+  font-size: 20px;
+  color: blue;
 }
 .description {
-	font-size: 18px;
+  font-size: 18px;
 }
 .introduction {
-	font-size: 20px;
-	border-top: solid 2px gray;
-	padding-top: 10px;
+  font-size: 20px;
+  border-top: solid 2px gray;
+  padding-top: 10px;
   padding-left: 10px;
 }
 
 .price {
-	padding-top: 10px;
-	color: green;
+  padding-top: 10px;
+  color: green;
   font-size: 20px;
 }
 
 .image {
-	max-width: 100%;
-	height: auto;
+  max-width: 100%;
+  height: auto;
   min-height: 120px;
   max-height: auto;
   float: left;
   margin: 3px;
-  padding: 3px;	
+  padding: 3px;
 }
 
 .card-img-top {
@@ -132,7 +132,7 @@ aside h5 {
   max-height: 200px;
   float: left;
   margin: 3px;
-  padding: 3px; 
+  padding: 3px;
 }
 .cart-title {
   font-size: 20px;
@@ -186,7 +186,7 @@ aside h5 {
 }
 .cover-img {
   max-height: 25%;
-  width: auto;  
+  width: auto;
 }
 .theme {
   position: absolute;
@@ -332,22 +332,22 @@ ul.primary li:hover a {
 
 ul.primary li:hover > a{
   color: #000;
-} 
+}
 
 @media only screen and (max-width: 600px) {
   .decor {
     padding: 3px;
   }
-  
+
   .wrap {
     width: 100%;
     margin-top: 0px;
   }
-  
+
    li {
     float: none;
   }
-  
+
   ul.primary li:hover a {
     background: none;
     color: #8B8B8B;
@@ -359,20 +359,20 @@ ul.primary li:hover > a{
     background: #272727;
     color: #fff;
   }
-  
+
   ul.sub {
-    display: block;  
+    display: block;
     position: static;
     box-shadow: none;
     width: 100%;
   }
-  
+
   ul.sub li a {
     background: #272727;
     border: none;
     color: #8B8B8B;
   }
-  
+
   ul.sub li a:hover {
     color: #ccc !important;
     background: none;

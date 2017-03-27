@@ -1,39 +1,38 @@
 <% @books.each_slice(3) do |books| %>
-	<div class = "row" style="width:80%; margin: 20px auto;">
-		<% books.each do |book| %>
-			<div class="card col-xs-4 book">
-				<%= link_to book_path(book.id) do %>
-					<%= image_tag(book.image.url, class: "card-img-top")%>
-				  <div class="card-block">
-				    <h3 class="card-title book-title"><%= book.title %></h3>
-				    <h6 class="card-subtitle mb-2 text-muted inline">
-				    	<% book.categories.each do |c|%>
-				    		<%= link_to c.name, root_path(id: c.id), class: "tag"%>
-				    	<% end %>
-				    </h6>
-				    <h6 class="introduction">Introduction:</h6>
-				    <p class="card-text"><%= book.description %></p>
-				    <div class="row">
-							<p style="font-size: 18px;" class="card-text col-xs-3 price"><strong>Price: $<%= book.price  %></strong></p>
-				    	<p class="card-text col-xs-4">
-								<strong style="font-size: 16px; float: right">Quantity:</strong> 
-				    	</p>
-				    	<p class="card-text col-xs-4" style="padding-left: 0px;"><input type="number" class="form-control text-center" value="1"></p>
-				    </div>
-				  </div>
-			  <% end %>
-				<% if is_editable %>
-				  <div class="row", style="padding: 20px;">
-		  			<%= link_to "Edit this book", edit_book_path(book.id), class: "btn btn-xs btn-primary"%>
-						<%= link_to "Delete this book", book_path(book), method: :delete, 
-																	data: {confirm: "Are you sure?"}, 
-																	class: "btn btn-xs btn-danger" %>
-			  	</div>					
-			  <% end %>	
-			</div>
-		<% end %>			
-		<div class="col-xs-12">
-			<%= will_paginate @books%>
-		</div>
-	</div>
-<% end %>	
+  <div class = "row" style="width:80%; margin: 20px auto;">
+    <% books.each do |book| %>
+      <div class="card col-xs-4 book">
+        <%= link_to book_path(book.id) do %>
+          <%= image_tag(book.image.url, class: "card-img-top")%>
+          <div class="card-block">
+            <h3 class="card-title book-title"><%= book.title %></h3>
+            <h6 class="card-subtitle mb-2 text-muted inline">
+              <% book.categories.each do |c|%>
+                <%= link_to c.name, root_path(id: c.id), class: "tag"%>
+              <% end %>
+            </h6>
+            <h6 class="introduction">Introduction:</h6>
+            <p class="card-text"><%= book.description %></p>
+            <div class="row">
+              <p style="font-size: 18px;" class="card-text col-xs-3 price"><strong>Price: $<%= book.price  %></strong></p>
+              <p class="card-text col-xs-4">
+                <strong style="font-size: 16px; float: right">Quantity:</strong>
+              </p>
+              <p class="card-text col-xs-4" style="padding-left: 0px;"><input type="number" class="form-control text-center" value="1"></p>
+            </div>
+          </div>
+        <% end %>
+        <% if is_editable %>
+          <div class="row", style="padding: 20px;">
+            <%= link_to "Edit this book", edit_book_path(book.id), class: "btn btn-xs btn-primary"%>
+            <%= link_to "Delete this book", book_path(book), method: :delete,
+                                  data: {confirm: "Are you sure?"},
+                                  class: "btn btn-xs btn-danger" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="col-xs-12">
+    </div>
+  </div>
+<% end %>
