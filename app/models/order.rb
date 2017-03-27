@@ -1,7 +1,4 @@
 class Order < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :book
-  validates :quantity, presence: true, numericality: { greater_than: 0 }
   NOT_PAID = 1
   NEW = 2
   PREPARING = 3
@@ -18,10 +15,15 @@ class Order < ActiveRecord::Base
     CANCEL_REFUND => 'Cancel'
   }
 
-  validates_inclusion_of :status, in: STATUSES.keys,
-    message: "{{value}} must be in #{STATUSES.values.join ','}"
+  belongs_to :user
+  validates :user_id, presence: true
+  belongs_to :book
+  validates :book_id, presence: true
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :status, presence: true, numericality: { only_integer: true }
+  validates_inclusion_of :status, in: STATUSES.keys
 
-  # just a helper method for the view
+  # a helper method for the view
   def status_name
     STATUSES[status]
   end
