@@ -9,7 +9,7 @@ class Book < ActiveRecord::Base
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :in_stock, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   mount_uploader :image, ImageUploader
-  validates :image, presence: true
+  # validates :image, presence: true
 
   def self.search(search)
     where("title LIKE ? OR description LIKE ?", "%#{search}%", "%#{search}%")
