@@ -1,10 +1,9 @@
 FactoryGirl.define do
   factory :book do
-    title "MyString"
-    description "MyString"
+    title "This is a title"
+    description "This is a book description"
     price 1.5
-    association :user
+    user_id 1
     in_stock 10
-    association :categories
   end
 end

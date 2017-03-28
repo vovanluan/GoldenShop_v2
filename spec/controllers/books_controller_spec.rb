@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe BooksController do
+  let(:book) { FactoryGirl.create :book }
   describe "GET #index" do
     before { get :index }
 
@@ -15,9 +16,10 @@ describe BooksController do
   end
 
   describe "POST #create" do
-    before { post :create }
+    let!(:params) { { book: FactoryGirl.attributes_for(:book) } }
     it "create new book" do
-      post :create, book_params: FactoryGirl.attributes_for(:book)
+      post :create, params
+      expect(Book.count).to eq(1)
     end
   end
 end
