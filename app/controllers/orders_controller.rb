@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     if current_user.admin?
       @orders = Order.all.select { |o| o.status != 1 }
     else
-      @orders = Order.all.select {|o| o.status != 1 && current_user.id == o.user_id}
+      @orders = Order.all.select { |o| o.status != 1 && current_user.id == o.user_id }
     end
   end
 

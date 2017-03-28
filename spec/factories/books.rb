@@ -3,6 +3,8 @@ FactoryGirl.define do
     title "MyString"
     description "MyString"
     price 1.5
-    user nil
+    association :user
+    in_stock 10
+    association :categories
   end
 end
