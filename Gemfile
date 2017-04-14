@@ -148,8 +148,6 @@ group :development do
   gem 'web-console'
 end
 group :development, :test do
-  # For development
-  gem 'sqlite3', '1.3.12'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-rails'
